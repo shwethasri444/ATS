@@ -1,0 +1,6 @@
+numpy
+pandas
+django
+mysql-python
+django_tables2
+djangorestframework
