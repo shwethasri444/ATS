@@ -13,11 +13,13 @@ to ignore previous versions and reinstall:
 
 >pip install _Iv XX==1.0.3
 
-to check version:
+to check version in cmd:
 
->>>import XX as YY
+>python
 
->>>YY.__version__
+>import XX as YY
+
+>YY.__version__
 
 to download MySQL client:
 https://dev.mysql.com/downloads/mysql/
@@ -26,11 +28,11 @@ To run the project:
 
 Create and activate a virtualenv:
 
-virtualenv lol
+>virtualenv lol
 
-cd lol
+>cd lol
 
-Scripts\activate 
+>Scripts\activate 
 
 Clone the repository on your local environment 
 
