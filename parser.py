@@ -160,7 +160,7 @@ from nltk.corpus import stopwords
 
 print("tokenizing the given file ......")
 
-tokens = word_tokenize(resume.decode("utf-8"))
+tokens = word_tokenize(resume.decode("ascii"))
 
 punctuations = ['(',')',';',':','[',']',',']
 
@@ -172,7 +172,7 @@ filtered = [w for w in tokens if not w in stop_words and  not w in string.punctu
 
 print("removing the stop words....\nCleaning the resumes....\nExtracting Text .......")
 
-# print(filtered)
+print(filtered)
 
 #get the name from the resume
 
@@ -205,20 +205,25 @@ print("Email : " + email)
 
 
 #mobile number
+# http://www.diveintopython.net/regular_expressions/phone_numbers.html
 
 mobile = []
 
-match_mobile = re.search(r'((?:\(?\+91\)?)?\d{9})',resume.decode("utf-8"))
+match_mobile = re.findall(r'((?:\(?\+91\)?)?\d{9})',resume.decode("utf-8"))
 if(match_mobile):
-	mobile.append(match_mobile.group(0))
+	mobile.append(match_mobile)
 
-match_mobile_2 = re.search(r'(?:\w{3}-\w{3}-\w{4})',resume.decode("utf-8"))	
+match_mobile_2 = re.findall(r'(?:\w{3}-\w{3}-\w{4})',resume.decode("utf-8"))	
 if(match_mobile_2):
-	mobile.append(match_mobile_2.group(0))
+	mobile.append(match_mobile_2)
 
-match_mobile_3 = re.search(r'(?:\(\w{3}\)\w{3}-\w{4})',resume.decode("utf-8"))	
+match_mobile_4 = re.findall(r'(?:(\d{3})\D*(\d{3})\D*(\d{4}))',resume.decode("utf-8"))	
+if(match_mobile_4):
+	mobile.append(match_mobile_4)
+
+match_mobile_3 = re.findall(r'(?:\(\w{3}\)\w{3}-\w{4})',resume.decode("utf-8"))	
 if(match_mobile_3):
-	mobile.append(match_mobile_3.group(0))
+	mobile.append(match_mobile_3)
 
 #handling the cases when mobile number is not given
 
@@ -226,21 +231,19 @@ if(mobile != None):
 	print("Mobile : ")
 	# print('[%s]' % ', '.join(map(str, mobile)))
 	for item in range(len(mobile)):
-		print(mobile[item])
+		print('%s' % ', '.join(map(str, mobile[item])))
 	#print the url list
 
 else:
 	print("Mobile : " + " ")
 
-url=[]
+
 # if(fetch_pdf_urls(filename)!=None):
 # 	url= fetch_pdf_urls(filename)
 # print("URL : " + url)
 
 # match_url = re.search(r'((?:/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/)',resume.decode("utf-8"))
-match_url = re.search(r'((?:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/)/)',resume.decode("utf-8"))
-if(match_url):
-	url.append(match_url.group(0))
+url = re.findall(r'((?:/^(http?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/)/)',resume.decode("utf-8"))
 
 # match_url = re.search(r'(?:\w{3}-\w{3}-\w{4})',resume.decode("utf-8"))	
 
