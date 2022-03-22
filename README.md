@@ -1,4 +1,4 @@
-# ATS-lol
+# ATS
 Installation:
 
 python 3.6.2
@@ -36,11 +36,11 @@ Create and activate a virtualenv:
 
 Clone the repository on your local environment 
 
-git clone https://github.com/shwethasri444/ATS-lol.git 
+git clone https://github.com/shwethasri444/ATS.git 
 
 Navigate to the folder 
 
->cd ATS-lol
+>cd ATS
 
 >cd ats
 
